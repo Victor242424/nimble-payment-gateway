@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: payment-gateway
+  datasource:
+    url: jdbc:postgresql://localhost:5432/payment_gateway
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  security:
+    filter:
+      order: 10
+    user:
+      name: test
+      password: test
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+    tags-sorter: alpha
+    show-actuator: false
+
+# JWT Configuration
+jwt:
+  secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+  expiration: 86400000 # 24 hours in milliseconds
+
+# External Authorizer - CORREGIDO
+authorizer:
+  url: https://zsy6tx7aql.execute-api.sa-east-1.amazonaws.com/authorizer
+  timeout: 5000 # 5 seconds
